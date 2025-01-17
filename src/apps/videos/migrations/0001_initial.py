@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ("video_id", models.CharField(max_length=100, unique=True)),
                 ("title", models.CharField(blank=True, max_length=100)),
                 ("description", models.CharField(blank=True, max_length=5000)),
-                ("source", models.CharField(choices=[("YOUTUBE", "YouTube"), ("VK", "VK")], default="YOUTUBE")),
+                ("source", models.CharField(choices=[("YOUTUBE", "YouTube"),], default="YOUTUBE")),
                 ("origin_link", models.CharField(max_length=500)),
                 ("thumbnail_url", models.CharField(max_length=500)),
                 ("starts_from", models.IntegerField(default=0)),

@@ -1,12 +1,9 @@
-import requests
 from celery import shared_task
 from django.db import transaction
 
 from apps.videos.models import Transcript, Video
 from apps.videos.services.transcript_fetcher import SyncTranscriptionAPI
-from apps.videos.services.vk_transcript import VkParseTranscriptions
 from apps.videos.tasks.update_index import rebuild_index_for_video
-from core.conf.environ import env
 from core.models.choices import MaterialsCookStatuses
 
 
@@ -30,8 +27,6 @@ def save_transcript(video_origin_id: str) -> None:
         try:
             video.setattr_and_save("transcript_status", MaterialsCookStatuses.IN_PROGRESS)
             match video.source:
-                case Video.OriginChoices.VK:
-                    raw_transcript = VkParseTranscriptions(video=video)()
                 case Video.OriginChoices.YOUTUBE:
                     raw_transcript = get_raw_transcript(video_origin_id)
                 case _:

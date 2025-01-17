@@ -1,7 +1,4 @@
 # Application definition
-from django.conf import settings
-
-from core.conf.environ import env
 
 APPS = [
     "core",

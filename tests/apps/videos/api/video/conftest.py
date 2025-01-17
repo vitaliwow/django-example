@@ -11,27 +11,6 @@ def youtube_url() -> str:
     return "https://www.youtube.com/watch?v=UNOkvk_fMmM"
 
 
-@pytest.fixture()
-def vk_url() -> str:
-    return "https://vk.com/video/sport?z=video-50270859_456241272%2Fpl_cat_sport"
-
-
-@pytest.fixture
-def vk_mock_response():
-    return {
-        "description": "Денис Казанский",
-        "duration": 55,
-        "image": [
-            {
-                "url": "https://sun6-22.userapi.com/impg/"
-            }
-        ],
-        "id": 456241272,
-        "owner_id": -50270859,
-        "title": "Шоу «Денис против»."
-    }
-
-
 @pytest.fixture
 def youtube_mock_response():
     return {

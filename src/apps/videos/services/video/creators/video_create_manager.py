@@ -7,12 +7,11 @@ from rest_framework.exceptions import ValidationError
 
 from apps.users.models import User
 from apps.videos.models import Video
-from apps.videos.services.video.creators.vk import VKVideoCreator
 from apps.videos.services.video.creators.youtube import YouTubeVideoCreator
 from apps.videos.tasks import download_transcript
 from core.services import BaseService
 
-ALLOWED_ORIGINS = ["vk.com", "youtu", "vkvideo"]
+ALLOWED_ORIGINS = ["youtu"]
 
 
 @dataclass
@@ -22,19 +21,10 @@ class VideoCreateManager(BaseService):
     MAX_TITLE_LENGTH = 100
 
     def act(self) -> Video:
-        origin = self.get_origin()
-
-        match origin:
-            case Video.OriginChoices.VK:
-                video = VKVideoCreator(
-                    origin_link=self.video_url,
-                    title_length=self.MAX_TITLE_LENGTH,
-                )()
-            case Video.OriginChoices.YOUTUBE:
-                video = YouTubeVideoCreator(
-                    origin_link=self.video_url,
-                    title_length=self.MAX_TITLE_LENGTH,
-                )()
+        video = YouTubeVideoCreator(
+            origin_link=self.video_url,
+            title_length=self.MAX_TITLE_LENGTH,
+        )()
 
         video.users.add(self.user)
 
@@ -63,9 +53,3 @@ class VideoCreateManager(BaseService):
         if self.data.get("origin_link"):
             return self.data.get("origin_link")
         raise ValidationError("There is not origin_link in given data")
-
-    def get_origin(self) -> Video.OriginChoices:
-        if any(link in self.video_url for link in ("vk.com", "vkvideo")):
-            return Video.OriginChoices.VK
-        else:
-            return Video.OriginChoices.YOUTUBE

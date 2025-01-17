@@ -22,7 +22,7 @@ class Migration(migrations.Migration):
             model_name='video',
             name='source',
             field=models.CharField(
-                choices=[('YOUTUBE', 'YouTube'), ('VK', 'VK'), ('UPLOADED', 'Uploaded')], default='YOUTUBE'
+                choices=[('YOUTUBE', 'YouTube'), ('UPLOADED', 'Uploaded')], default='YOUTUBE'
             ),
         ),
     ]

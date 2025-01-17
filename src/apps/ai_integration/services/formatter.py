@@ -103,8 +103,6 @@ class Formatter(BaseService):
                 "Invalid offset_ms value - float or integer required",
             ) from err
         else:
-            if "https://vk.com/video_ext.php?" in link:
-                return f"{link}&hd=2&autoplay=1&t={offset_s}s"
             return f"https://www.youtube.com/watch?v{video_id}&t={offset_s}s"
 
     @staticmethod
