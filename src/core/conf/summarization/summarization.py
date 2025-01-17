@@ -1,0 +1,12 @@
+from core.conf.environ import env
+
+SUMMARIZATION_SERVICE_ID = env("SUMMARIZATION_SERVICE_ID", cast=str)
+SUMMARIZATION_BUCKET_NAME = env("SUMMARIZATION_BUCKET_NAME", cast=str)
+SUMMARIZATION_SERVICE_KEY_ID = env("SUMMARIZATION_SERVICE_KEY_ID", cast=str)
+SUMMARIZATION_STATIC_SECRET_KEY = env("SUMMARIZATION_STATIC_SECRET_KEY", cast=str)
+SUMMARIZATION_IAM_TOKEN_URL = "https://iam.api.cloud.yandex.net/iam/v1/tokens"  # noqa
+SUMMARIZATION_STATIC_KEY_ID = env("SUMMARIZATION_STATIC_KEY_ID", cast=str)
+SUMMARIZATION_FOLDER_ID = env("SUMMARIZATION_FOLDER_ID", cast=str, default="b1g14dsb903p43rd3teo")
+
+VIDEO_FILES_STORAGE = env("VIDEO_FILES_STORAGE", cast=str, default="/tmp/videos")  # noqa
+EXPIRED_DAYS = env("EXPIRED_DAYS", cast=int, default=3)

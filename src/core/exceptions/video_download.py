@@ -1,0 +1,2 @@
+class VideoDownloadError(Exception):
+    pass

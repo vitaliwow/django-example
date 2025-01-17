@@ -1,0 +1,21 @@
+{% load i18n %}
+
+{% block subject %}
+{% blocktrans %}{{ site_name }} - Ваш аккаунт успешно создан и активирован!{% endblocktrans %}
+{% endblock %}
+
+{% block text_body %}
+{% trans "Your account has been created and is ready to use!" %}
+
+{% trans "Thanks for using our site!" %}
+
+{% blocktrans %}The {{ site_name }} team{% endblocktrans %}
+{% endblock text_body %}
+
+{% block html_body %}
+<p>{% trans "Ваш аккаунт успешно создан и активирован!" %}</p>
+<p></p>
+<p>{% trans "Приятного пользования нашей платформой!" %}</p>
+<p></p>
+<p>{% blocktrans %}Команда {{ site_name }}{% endblocktrans %}</p>
+{% endblock html_body %}

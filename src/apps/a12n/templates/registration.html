@@ -1,0 +1,59 @@
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+  }
+  .container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  }
+  h1 {
+    color: #333;
+  }
+  p {
+    color: #666;
+  }
+  .btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+</style>
+{% load i18n %}
+
+{% block subject %}
+{% blocktrans %}Подтверждение регистрации на Платформы {% endblocktrans %}
+{% endblock subject %}
+
+{% block text_body %}
+{% blocktrans %}You're receiving this email because you need to finish activation process on {{ site_name }}.{% endblocktrans %}
+
+{% trans "Please go to the following page to activate account:" %}
+{{ protocol }}://{{ domain }}/{{ url|safe }}
+
+{% trans "Thanks for using our site!" %}
+
+{% blocktrans %}The {{ site_name }} team{% endblocktrans %}
+{% endblock text_body %}
+
+{% block html_body %}
+<p>{% blocktrans %}Вы получили это сообщение, т.к. необходимо завершить регистрацию на {{ site_name }}.{% endblocktrans %}</p>
+
+<p>{% trans "Для завершения регистрации перейдите, пожалуйста, по ссылке:" %}</p>
+<p><a href="{{ protocol }}://{{ domain }}/{{ url|safe }}">{{ protocol }}://{{ domain }}/{{ url|safe }}</a></p>
+
+<p>{% trans "Если вы не создавали аккаунт в  Платформе, просто проигнорируйте это письмо." %}</p>
+<p>{% trans "С уважением," %}</p>
+
+<p>Команда {{ site_name }}</p>
+
+{% endblock html_body %}
